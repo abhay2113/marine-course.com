@@ -1,0 +1,19 @@
+{
+  "name": "globalmove-payment",
+  "version": "1.0.0",
+  "description": "GlobalMove Logistics Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "migrate:users": "node scripts/migrate-users.js"
+  },
+  "engines": {
+    "node": ">=20 <25"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
