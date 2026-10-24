@@ -1,21 +1,20 @@
 const bcrypt = require('bcryptjs');
-const { getUsers } = require('./lib/users');
+const { findUserByEmail } = require('../lib/users');
 
 module.exports = async function handler(req, res) {
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
     const { email, password } = body;
 
-    if (!email || !password) {
+    if (typeof email !== 'string' || typeof password !== 'string' || !email || !password) {
       return res.status(400).json({
         success: false,
         message: 'Email and password are required.',
       });
     }
 
-    const users = getUsers();
-    const normalizedEmail = String(email).trim().toLowerCase();
-    const user = users.find((item) => item.email === normalizedEmail);
+    const normalizedEmail = email.trim().toLowerCase();
+    const user = await findUserByEmail(normalizedEmail);
 
     if (!user) {
       return res.status(401).json({

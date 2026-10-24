@@ -12,7 +12,7 @@
     <script type="text/javascript">
         (function () {
             emailjs.init({
-                publicKey: "PuPX39kPOA2C6uoTl", // Yahan apni EmailJS Public Key dalein
+                publicKey: "UPJgWYUTS-uNOESHF", // Yahan apni EmailJS Public Key dalein
             });
         })();
     </script>
@@ -344,80 +344,80 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
-<header>
-    <div class="topbar">
-        <div class="logo">
-            Global<span>Move</span>
-        </div>
-
-        <div class="contact-info">
-            <div class="contact-box">
-                <small>MAIL AT</small>
-                <p>support@globalmove.com</p>
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="topbar">
+            <div class="logo">
+                Global<span>Move</span>
             </div>
-            <div class="contact-box">
-                <small>CALL US</small>
-                <p>+91 91517 45693</p>
-            </div>
-        </div>
 
-        <a href="../index.html" class="home-btn">Home</a>
-    </div>
-
-    <div class="notice">
-        PLEASE MAKE SURE YOUR DETAILS
-        <span>ARE CORRECT BEFORE BOOKING</span>
-    </div>
-</header>
-
-<!-- ================= MAIN ================= -->
-<main class="page">
-    <h1 class="page-title">Book Course</h1>
-
-    <div class="booking-box">
-        <div class="booking-grid">
-
-            <!-- ================= LEFT ================= -->
-            <div>
-                <h2>Course Booking</h2>
-
-                <!-- TYPE -->
-                <div class="booking-type">
-                    <label class="radio-item">
-                        <input type="radio" name="bookingType" value="Course Booking" checked>
-                        Course Booking
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="bookingType" value="Exit Exam">
-                        Exit Exam
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="bookingType" value="Request Certificate">
-                        Request Certificate
-                    </label>
+            <div class="contact-info">
+                <div class="contact-box">
+                    <small>MAIL AT</small>
+                    <p>support@globalmove.com</p>
                 </div>
+                <div class="contact-box">
+                    <small>CALL US</small>
+                    <p>+91 91517 45693</p>
+                </div>
+            </div>
 
-                <!-- COURSE FORM -->
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Type*</label>
-                        <select id="type">
-                            <option value="">Select</option>
-                            <option>Course Booking</option>
-                            <option>Exit Exam</option>
-                            <option>Request Certificate</option>
-                        </select>
+            <a href="../index.html" class="home-btn">Home</a>
+        </div>
+
+        <div class="notice">
+            PLEASE MAKE SURE YOUR DETAILS
+            <span>ARE CORRECT BEFORE BOOKING</span>
+        </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="page">
+        <h1 class="page-title">Book Course</h1>
+
+        <div class="booking-box">
+            <div class="booking-grid">
+
+                <!-- ================= LEFT ================= -->
+                <div>
+                    <h2>Course Booking</h2>
+
+                    <!-- TYPE -->
+                    <div class="booking-type">
+                        <label class="radio-item">
+                            <input type="radio" name="bookingType" value="Course Booking" checked>
+                            Course Booking
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="bookingType" value="Exit Exam">
+                            Exit Exam
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="bookingType" value="Request Certificate">
+                            Request Certificate
+                        </label>
                     </div>
+
+                    <!-- COURSE FORM -->
+
+
+
 
                     <div class="form-group">
                         <label>Course*</label>
                         <select id="course">
                             <option value="">Select</option>
                             <option value="TASCO">TASCO</option>
-                            <option value="HV-(M)">HV-(M)</option>
-                            <option value="OTCTO">OTCTO</option>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Type*</label>
+
+
+                                </div>
+                                <option value="HV-(M)">HV-(M)</option>
+                                <option value="OTCTO">OTCTO</option>
                         </select>
+
                     </div>
 
                     <div class="form-group">
@@ -437,9 +437,9 @@
                     </div>
                 </div>
 
-                <button type="button" class="cart-btn" onclick="addToCart()">
+                <!-- <button type="button" class="cart-btn" onclick="addToCart()">
                     Add To Cart
-                </button>
+                </button> -->
 
                 <div id="cartMessage" class="success">
                     Course added successfully.
@@ -484,7 +484,7 @@
                     </label>
 
                     <button type="button" class="pay-btn" onclick="sendBookingEmail()">
-                        Book & Pay
+                        confirm booking
                     </button>
 
                     <div id="successMessage" class="success">
@@ -494,96 +494,97 @@
             </div>
 
         </div>
-    </div>
-</main>
+        </div>
+    </main>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-    © 2026 GlobalMove Logistics. All Rights Reserved.
-</footer>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        © 2026 GlobalMove Logistics. All Rights Reserved.
+    </footer>
 
-<script>
-/* ================= COURSE FEES ================= */
-const courseFees = {
-    "TASCO": "5500",
-    "HV-(M)": "6000",
-    "OTCTO": "4500"
-};
+    <script>
+        /* ================= COURSE FEES ================= */
+        const courseFees = {
+            "TASCO": "5500",
+            "HV-(M)": "6000",
+            "OTCTO": "4500"
+        };
 
-document.getElementById("course").addEventListener("change", function () {
-    const course = this.value;
-    const fee = document.getElementById("fee");
+        document.getElementById("course").addEventListener("change", function () {
+            const course = this.value;
+            const fee = document.getElementById("fee");
 
-    if (courseFees[course]) {
-        fee.value = "₹ " + courseFees[course];
-    } else {
-        fee.value = "";
-    }
-});
-
-/* ================= ADD TO CART ================= */
-function addToCart() {
-    const course = document.getElementById("course").value;
-    const batch = document.getElementById("batch").value;
-
-    if (!course || !batch) {
-        alert("Please select Course and Batch.");
-        return;
-    }
-
-    document.getElementById("cartMessage").style.display = "block";
-}
-
-/* ================= EMAILJS BOOKING ================= */
-function sendBookingEmail() {
-    const type = document.getElementById("type").value;
-    const course = document.getElementById("course").value;
-    const batch = document.getElementById("batch").value;
-    const fee = document.getElementById("fee").value;
-    const name = document.getElementById("candidateName").value.trim();
-    const passport = document.getElementById("passport").value.trim();
-    const dob = document.getElementById("dob").value;
-    const mobile = document.getElementById("mobile").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const terms = document.getElementById("terms").checked;
-
-    /* VALIDATION */
-    if (!type || !course || !batch || !name || !passport || !dob || !mobile || !email) {
-        alert("Please fill all required details.");
-        return;
-    }
-
-    if (!terms) {
-        alert("Please agree to the Terms and Conditions.");
-        return;
-    }
-
-    /* TEMPLATE PARAMS TO MATCH EMAILJS TEMPLATE */
-    const templateParams = {
-        type: type,
-        course: course,
-        batch: batch,
-        fee: fee || "To be confirmed",
-        candidate_name: name,
-        passport: passport,
-        dob: dob,
-        mobile: mobile,
-        email: email
-    };
-
-    /* SEND EMAIL VIA EMAILJS */
-    emailjs.send("service_6rct1bf", "template_yxpscbu", templateParams)
-        .then(function(response) {
-            const successMsg = document.getElementById("successMessage");
-            successMsg.style.display = "block";
-            successMsg.innerText = "Booking details sent successfully to your email!";
-            console.log("SUCCESS!", response.status, response.text);
-        }, function(error) {
-            alert("Failed to send booking details. Please try again.");
-            console.log("FAILED...", error);
+            if (courseFees[course]) {
+                fee.value = "₹ " + courseFees[course];
+            } else {
+                fee.value = "";
+            }
         });
-}
-</script>
+
+        /* ================= ADD TO CART ================= */
+        function addToCart() {
+            const course = document.getElementById("course").value;
+            const batch = document.getElementById("batch").value;
+
+            if (!course || !batch) {
+                alert("Please select Course and Batch.");
+                return;
+            }
+
+            document.getElementById("cartMessage").style.display = "block";
+        }
+
+        /* ================= EMAILJS BOOKING ================= */
+        function sendBookingEmail() {
+            const type = document.getElementById("type").value;
+            const course = document.getElementById("course").value;
+            const batch = document.getElementById("batch").value;
+            const fee = document.getElementById("fee").value;
+            const name = document.getElementById("candidateName").value.trim();
+            const passport = document.getElementById("passport").value.trim();
+            const dob = document.getElementById("dob").value;
+            const mobile = document.getElementById("mobile").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const terms = document.getElementById("terms").checked;
+
+            /* VALIDATION */
+            if (!type || !course || !batch || !name || !passport || !dob || !mobile || !email) {
+                alert("Please fill all required details.");
+                return;
+            }
+
+            if (!terms) {
+                alert("Please agree to the Terms and Conditions.");
+                return;
+            }
+
+            /* TEMPLATE PARAMS TO MATCH EMAILJS TEMPLATE */
+            const templateParams = {
+                type: type,
+                course: course,
+                batch: batch,
+                fee: fee || "To be confirmed",
+                candidate_name: name,
+                passport: passport,
+                dob: dob,
+                mobile: mobile,
+                email: email
+            };
+
+            /* SEND EMAIL VIA EMAILJS */
+            emailjs.send("service_4ltkjwh", "template_t3jel75", templateParams)
+                .then(function (response) {
+                    const successMsg = document.getElementById("successMessage");
+                    successMsg.style.display = "block";
+                    successMsg.innerText = "Booking details sent successfully to your email!";
+                    console.log("SUCCESS!", response.status, response.text);
+                }, function (error) {
+                    alert("Failed to send booking details. Please try again.");
+                    console.log("FAILED...", error);
+                });
+        }
+    </script>
 
 </body>
+
 </html>

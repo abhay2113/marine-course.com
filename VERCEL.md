@@ -1,10 +1,10 @@
-# Vercel Deployment
+# Deploy to Vercel
 
-1. Create a Neon Postgres project and copy its connection string.
-2. Import this Git repository into Vercel. Vercel detects the Express `server.js` entry point; no build command is needed.
-3. In Vercel project settings, add `DATABASE_URL` for Production, Preview, and Development, then redeploy. The users table is created automatically on the first health check or auth request.
-4. To keep existing local accounts, put the Neon connection string in `.env.local` and run `npm run migrate:users` before removing the local `users.json` copy. Imported password hashes are preserved; rerunning the command skips existing email addresses.
+1. Create a Neon Postgres database and copy its connection string.
+2. Import this repository into Vercel. `vercel.json` publishes `public/` as the static site and Vercel deploys the handlers in `api/` as serverless functions. No build command is required.
+3. Add `DATABASE_URL` in the Vercel project settings for Production, Preview, and Development, then deploy. The users table is created automatically the first time someone registers or logs in.
+4. If you have existing accounts in `users.json`, set `DATABASE_URL` in `.env.local` and run `npm run migrate:users` before deploying. Imported password hashes are preserved; rerunning the command skips existing email addresses.
 
-Static pages and assets live in `public/` so Vercel serves them from its CDN. User data and local environment files are excluded from deployment.
+For local development, set `DATABASE_URL` in `.env.local` and run `npm start`. The local Express server uses the same API handlers and database as the Vercel functions.
 
-The current and historical `users.json` contents may still exist in Git history. If that repository has been public, rotate affected passwords and purge the file from repository history before deploying.
+`users.json`, `.env`, and `.env.local` are excluded from deployment. The current and historical `users.json` contents may still exist in Git history. If this repository has been public, rotate affected passwords and purge the file from repository history before deploying.

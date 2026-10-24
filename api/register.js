@@ -1,12 +1,19 @@
 const bcrypt = require('bcryptjs');
-const { getUsers, saveUsers } = require('./lib/users');
+const { createUser, findUserByEmail } = require('../lib/users');
 
 module.exports = async function handler(req, res) {
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
     const { name, email, password } = body;
 
-    if (!name || !email || !password) {
+    if (
+      typeof name !== 'string' ||
+      typeof email !== 'string' ||
+      typeof password !== 'string' ||
+      !name.trim() ||
+      !email.trim() ||
+      !password
+    ) {
       return res.status(400).json({
         success: false,
         message: 'All fields are required.',
@@ -20,10 +27,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const users = getUsers();
-    const normalizedEmail = String(email).trim().toLowerCase();
+    const normalizedEmail = email.trim().toLowerCase();
 
-    if (users.some((user) => user.email === normalizedEmail)) {
+    if (await findUserByEmail(normalizedEmail)) {
       return res.status(409).json({
         success: false,
         message: 'Email already registered.',
@@ -31,16 +37,18 @@ module.exports = async function handler(req, res) {
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
-    const newUser = {
-      id: Date.now(),
-      name: String(name).trim(),
+    const createdUser = await createUser({
+      name: name.trim(),
       email: normalizedEmail,
       passwordHash,
-      createdAt: new Date().toISOString(),
-    };
+    });
 
-    users.push(newUser);
-    saveUsers(users);
+    if (!createdUser) {
+      return res.status(409).json({
+        success: false,
+        message: 'Email already registered.',
+      });
+    }
 
     return res.status(200).json({
       success: true,

@@ -29,9 +29,15 @@
                 <li><a href="#services">Services</a></li>
 
                 <li class="dropdown">
-                    <a href="javascript:void(0);" onclick="toggleDropdown(event)">
-                        Courses <span class="arrow">⌄</span>
-                    </a>
+                    <button
+                        class="dropdown-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="coursesDropdown"
+                        onclick="toggleDropdown(event)"
+                    >
+                        Courses <span class="arrow" aria-hidden="true">⌄</span>
+                    </button>
 
                     <ul class="dropdown-menu" id="coursesDropdown">
 
@@ -650,6 +656,7 @@
 
         function toggleMenu() {
             document.getElementById("navLinks").classList.toggle("active");
+            closeDropdown();
         }
 
 
@@ -688,9 +695,31 @@
 
             const dropdown =
                 document.getElementById("coursesDropdown");
+            const toggle = event.currentTarget;
+            const isOpen = dropdown.classList.toggle("show");
 
-            dropdown.classList.toggle("show");
+            toggle.setAttribute("aria-expanded", String(isOpen));
         }
+
+        function closeDropdown() {
+            const dropdown = document.getElementById("coursesDropdown");
+            const toggle = document.querySelector(".dropdown-toggle");
+
+            dropdown.classList.remove("show");
+            toggle.setAttribute("aria-expanded", "false");
+        }
+
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest(".dropdown")) {
+                closeDropdown();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeDropdown();
+            }
+        });
 
 
         /* QUOTE */
