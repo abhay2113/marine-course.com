@@ -478,7 +478,7 @@
                     </label>
 
                     <button type="button" class="pay-btn" onclick="sendBookingEmail()">
-                        Send Enquiry
+                        confirm booking
                     </button>
 
                     <div id="successMessage" class="success">
@@ -498,18 +498,18 @@
 
     <script>
         /* ================= COURSE FEES ================= */
-        const courseDetails = {
-            "TASCO": { fee: "5500", duration: "6 days", type: "Tanker training" },
-            "HV-(M)": { fee: "6000", duration: "4 days", type: "Safety training" },
-            "OTCTO": { fee: "4500", duration: "6 days", type: "Tanker training" }
+        const courseFees = {
+            "TASCO": "5500",
+            "HV-(M)": "6000",
+            "OTCTO": "4500"
         };
 
         document.getElementById("course").addEventListener("change", function () {
             const course = this.value;
             const fee = document.getElementById("fee");
 
-            if (courseDetails[course]) {
-                fee.value = "₹ " + courseDetails[course].fee;
+            if (courseFees[course]) {
+                fee.value = "₹ " + courseFees[course];
             } else {
                 fee.value = "";
             }
@@ -533,7 +533,6 @@
             const selectedBookingType = document.querySelector('input[name="bookingType"]:checked');
             const type = selectedBookingType ? selectedBookingType.value : "";
             const course = document.getElementById("course").value;
-            const details = courseDetails[course];
             const batch = document.getElementById("batch").value;
             const fee = document.getElementById("fee").value;
             const name = document.getElementById("candidateName").value.trim();
@@ -558,39 +557,25 @@
             const templateParams = {
                 type: type,
                 course: course,
-                booking_type: type,
-                course_name: course,
-                course_type: details.type,
-                duration: details.duration,
-                course_duration: details.duration,
                 batch: batch,
                 fee: fee || "To be confirmed",
-                course_fee: fee || "To be confirmed",
                 candidate_name: name,
-                name: name,
                 passport: passport,
                 dob: dob,
                 mobile: mobile,
-                phone: mobile,
                 email: email
             };
 
             /* SEND EMAIL VIA EMAILJS */
-            const button = document.querySelector(".pay-btn");
-            button.disabled = true;
             emailjs.send("service_4ltkjwh", "template_t3jel75", templateParams)
                 .then(function (response) {
                     const successMsg = document.getElementById("successMessage");
                     successMsg.style.display = "block";
-                    successMsg.innerText = "Enquiry sent successfully!";
+                    successMsg.innerText = "Booking details sent successfully to your email!";
                     console.log("SUCCESS!", response.status, response.text);
-                })
-                .catch(function (error) {
-                    alert("Failed to send enquiry. Please try again.");
-                    console.error("EmailJS enquiry failed:", error);
-                })
-                .finally(function () {
-                    button.disabled = false;
+                }, function (error) {
+                    alert("Failed to send booking details. Please try again.");
+                    console.log("FAILED...", error);
                 });
         }
     </script>
